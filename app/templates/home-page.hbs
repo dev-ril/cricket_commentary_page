@@ -1,0 +1,82 @@
+
+<div class="jumbo">
+    <div>
+        <h2>Cricket Commentary Page</h2>
+    </div>
+    <br>
+    <table>
+        <tr>
+            <div>
+                <div class="logocsk"></div>
+            </div>
+            <div>
+                <h4>Batting Team</h4>
+                <h3>{{battingTeam}}</h3>
+                <br>
+                <h4>Total runs needed:</h4>
+                <h3>{{runsNeeded}}</h3>
+                <br>
+                <h4>Overs: </h4>
+                <h3>{{overs}}</h3>
+            </div>
+            <br>
+            <div>
+                <h3><button class="button" {{action "toggleBody" }}>Start Game</button></h3>
+                <br><br>
+                <button class="button"{{action "addElement"}}>Add row</button>
+                <br><br>
+                
+                {{#if isExpanded}}
+                <table>
+                    <tr>
+                        <div>
+                            <button class="score-button" {{action "zero"}}>.</button>
+                            <button class="score-button" {{action "one"}}>1</button>
+                            <button class="score-button" {{action "two"}}>2</button>
+                            <button class="score-button" {{action "three"}}>3</button>
+                            <button class="score-button" {{action "four"}}>4</button>
+                            <button class="score-button" {{action "five"}}>5</button>
+                            <button class="score-button" {{action "six"}}>6</button>
+                            <button class="score-button" {{action "out"}}>Out</button>
+                        </div>
+                    </tr>
+                </table>
+                <br><br><br><br>
+                <table id="myTable" border="1" cellpadding="15px">
+                    <tr>
+                        <th>Over</th>
+                        <th>0</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>total</th>
+                    </tr>
+                    <tr>
+                        <td>Over 1</td>
+                        <td id="0">{{b1}}</td>
+                        <td id="1">{{b2}}</td>
+                        <td id="2">{{b3}}</td>
+                        <td id="3">{{b4}}</td>
+                        <td id="4">{{b5}}</td>
+                        <td id="5">{{b6}}</td>
+                        <td id="111">{{t1}}</td>
+                    </tr>
+                </table>
+                <br><br><br>
+                <h3>Batsman - 1</h3>   
+                <h4>{{batsmen.[0]}}</h4>
+                <br>
+                <h3>Batsman - 2</h3>
+                <h4>{{batsmen.[1]}}</h4>
+                <br>
+                <h3>Bowler</h3>
+                <h4>{{bowler.[0]}}</h4>
+                <br>
+                {{/if}}
+                <br><br>
+            </div>
+        </tr>
+    </table>
+</div>
