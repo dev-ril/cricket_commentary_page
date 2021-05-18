@@ -40,7 +40,24 @@
                         </div>
                     </tr>
                 </table>
-                <br><br><br><br>
+                <br><br>
+                <table border="1">
+                    <tr>
+                        <th class="scoreCard">CSK</th>
+                        <th class="scoreCard">Batsman - 1</th>
+                        <th class="scoreCard">Batsman - 2</th>
+                        <th class="scoreCard">Over</th>
+                        <th class="scoreCard">Bowler</th>
+                    </tr>
+                    <tr>
+                        <td class="scoreCard">{{score}} - {{noOfWickets}}</td>
+                        <td class="scoreCard">{{batsmen.[0]}} - {{runsTaken.[0]}}</td>
+                        <td class="scoreCard">{{batsmen.[1]}} - {{runsTaken.[1]}}</td>
+                        <td class="scoreCard">{{over}}</td>
+                        <td class="scoreCard">{{bowler.[0]}} {{runsGiven.[0]}}-{{wicketsTaken.[0]}}</td>
+                    </tr>
+                </table>
+                <br>
                 <h4>Score Table</h4>
                 <br>
                 <table class="scoreTable" border="1" cellpadding="15px">
@@ -65,16 +82,7 @@
                         <td>{{t1}}</td>
                     </tr>
                 </table>
-                <br><br><br>
-                <h3>Batsman - 1</h3>
-                <h4>{{batsmen.[0]}}</h4>
-                <br>
-                <h3>Batsman - 2</h3>
-                <h4>{{batsmen.[1]}}</h4>
-                <br>
-                <h3>Bowler</h3>
-                <h4>{{bowler.[0]}}</h4>
-                <br>
+                <br><br>
                 {{/if}}
                 <br><br>
             </div>

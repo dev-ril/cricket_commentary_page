@@ -204,9 +204,15 @@ p {
   .scoreTable{
       height: 100px;
       width: 1000px;
+      text-align: center;
   }
   
   .scoreEditor{
     font-size: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .scoreCard{
+    text-align: center;
+    width: 150px;
   }
