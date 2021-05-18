@@ -7,13 +7,13 @@ export default Controller.extend({
   overs: 15,
   batsmen: ['Ruturaj Gaikwad', 'Faf du Plessis', 'Moeen Ali', 'Suresh Raina', 'Ambati Rayudu', 'Ravindra Jadeja', 'MS Dhoni', 'Sam Curran', 'Dwayne Bravo', 'Shardul Thakur', 'Deepak Chahar'],
   bowler: ['Ravindra Jadeja', 'Sam Curran', 'Dwayne Bravo', ' Shardul Thakur', ' Deepak Chahar'],
+  
   actions: {
     toggleBody() {
       this.toggleProperty('isExpanded');
     },
+    addElement() {
 
-    addElement(){
-      
     },
     zero() {
 
