@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
   isExpanded: false,
+  button1:"Start Game",
   battingTeam: "Chennai Super Kings",//batting team name
   runsNeeded: 100,//total runs needed to win the match
   overs: 15,//total no of overs
@@ -19,7 +20,6 @@ export default Controller.extend({
     toggleBody() {
       this.toggleProperty('isExpanded');
     },
-
   //To add next over row when an over is completed
     addElement() {
 
