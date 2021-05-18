@@ -200,4 +200,13 @@ p {
     position: relative;
     top: -25px;
   }
+
+  .scoreTable{
+      height: 100px;
+      width: 1000px;
+  }
   
+  .scoreEditor{
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }

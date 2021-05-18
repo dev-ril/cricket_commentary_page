@@ -22,7 +22,10 @@
             <div>
                 <h3><button class="button" {{action "toggleBody" }}>Start Game</button></h3>
                 <br><br>
+
                 {{#if isExpanded}}
+                <h4 class="scoreEditor">Score Editor</h4>
+                <br>
                 <table>
                     <tr>
                         <div>
@@ -38,7 +41,9 @@
                     </tr>
                 </table>
                 <br><br><br><br>
-                <table id="myTable" border="1" cellpadding="15px">
+                <h4>Score Table</h4>
+                <br>
+                <table class="scoreTable" border="1" cellpadding="15px">
                     <tr>
                         <th>Over</th>
                         <th>0</th>
