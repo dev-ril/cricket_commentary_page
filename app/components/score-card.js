@@ -4,6 +4,9 @@ export default class ScoreCardComponent extends Component {
     score = 0;//current score
     noOfWickets = 0;//no of wickets gone
     over = 0;
+    i = 0;
+    j = 1;
+    k = 0;
     batsmen = ['Ruturaj Gaikwad', 'Faf du Plessis', 'Moeen Ali', 'Suresh Raina', 'Ambati Rayudu', 'Ravindra Jadeja', 'MS Dhoni', 'Sam Curran', 'Dwayne Bravo', 'Shardul Thakur', 'Deepak Chahar'];//batsmen line-up
     bowler = ['Ravindra Jadeja', 'Sam Curran', 'Dwayne Bravo', ' Shardul Thakur', ' Deepak Chahar'];//bowlers line-up
     runsTaken = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];//runs of individual batsmen
