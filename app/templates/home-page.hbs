@@ -9,53 +9,25 @@
                 <div style="width: 600px;">
                     <div class="logocsk"></div>
                     <h4>Batting Team</h4>
-                    <h3>{{battingTeam}}</h3>
+                    <h3>{{this.battingTeam}}</h3>
                     <br>
                     <h4>Total runs needed:</h4>
-                    <h3>{{runsNeeded}}</h3>
+                    <h3>{{this.runsNeeded}}</h3>
                     <br>
                     <h4>Overs: </h4>
-                    <h3>{{overs}}</h3>
+                    <h3>{{this.overs}}</h3>
                     <br>
-                    <h3><button class="button" {{action "toggleBody" }}>{{button1}}</button></h3>
+                    <h3><button class="button" {{action "toggleBody" }}>{{this.button1}}</button></h3>
                     <br><br>
                 </div>
 
                 <div style="width: 500px;">
                     {{#if isExpanded}}
-                    <table class="scoreTable" border="1" style="border-spacing: 5px;border-radius:10px">
-                        <tr>
-                            <th class="scoreCard">CSK</th>
-                            <th class="scoreCard">Batsman - 1</th>
-                            <th class="scoreCard">Batsman - 2</th>
-                            <th class="scoreCard">Over</th>
-                            <th class="scoreCard">Bowler</th>
-                        </tr>
-                        <tr>
-                            <td class="scoreCard">{{score}} - {{noOfWickets}}</td>
-                            <td class="scoreCard">{{batsmen.[0]}} - {{runsTaken.[0]}}</td>
-                            <td class="scoreCard">{{batsmen.[1]}} - {{runsTaken.[1]}}</td>
-                            <td class="scoreCard">{{over}}</td>
-                            <td class="scoreCard">{{bowler.[0]}} {{runsGiven.[0]}}-{{wicketsTaken.[0]}}</td>
-                        </tr>
-                    </table>
+                    <ScoreCard></ScoreCard>
                     <br>
                     <h4 class="scoreEditor">Score Editor</h4>
                     <br>
-                    <table>
-                        <tr>
-                            <div>
-                                <button class="score-button" {{action "zero" }}>.</button>
-                                <button class="score-button" {{action "one" }}>1</button>
-                                <button class="score-button" {{action "two" }}>2</button>
-                                <button class="score-button" {{action "three" }}>3</button>
-                                <button class="score-button" {{action "four" }}>4</button>
-                                <button class="score-button" {{action "five" }}>5</button>
-                                <button class="score-button" {{action "six" }}>6</button>
-                                <button class="score-button" {{action "out" }}>Out</button>
-                            </div>
-                        </tr>
-                    </table>
+                    <Score></Score>
                     <br>
                     <h4 class="scoreEditor">Score Table</h4>
                     <br>
@@ -70,16 +42,7 @@
                             <th>5</th>
                             <th>total</th>
                         </tr>
-                        <tr>
-                            <td>Over 1</td>
-                            <td>{{b1}}</td>
-                            <td>{{b2}}</td>
-                            <td>{{b3}}</td>
-                            <td>{{b4}}</td>
-                            <td>{{b5}}</td>
-                            <td>{{b6}}</td>
-                            <td>{{t1}}</td>
-                        </tr>
+                        <ScoreTableRow></ScoreTableRow>
                     </table>
                     <br><br>
                     {{/if}}
