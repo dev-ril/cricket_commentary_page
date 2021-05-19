@@ -20,8 +20,26 @@
                     <h3><button class="button" {{action "toggleBody" }}>{{button1}}</button></h3>
                     <br><br>
                 </div>
+
                 <div style="width: 500px;">
                     {{#if isExpanded}}
+                    <table class="scoreTable" border="1" style="border-spacing: 5px;border-radius:10px">
+                        <tr>
+                            <th class="scoreCard">CSK</th>
+                            <th class="scoreCard">Batsman - 1</th>
+                            <th class="scoreCard">Batsman - 2</th>
+                            <th class="scoreCard">Over</th>
+                            <th class="scoreCard">Bowler</th>
+                        </tr>
+                        <tr>
+                            <td class="scoreCard">{{score}} - {{noOfWickets}}</td>
+                            <td class="scoreCard">{{batsmen.[0]}} - {{runsTaken.[0]}}</td>
+                            <td class="scoreCard">{{batsmen.[1]}} - {{runsTaken.[1]}}</td>
+                            <td class="scoreCard">{{over}}</td>
+                            <td class="scoreCard">{{bowler.[0]}} {{runsGiven.[0]}}-{{wicketsTaken.[0]}}</td>
+                        </tr>
+                    </table>
+                    <br>
                     <h4 class="scoreEditor">Score Editor</h4>
                     <br>
                     <table>
@@ -69,24 +87,7 @@
                 </div>
             </div>
 
-            <table border="1" style="border-spacing: 5px;border-radius:10px">
-                <tr>
-                    <th class="scoreCard" style="color: #FDD835;">CSK</th>
-                    <th class="scoreCard" style="color: #FDD835;">Batsman - 1</th>
-                    <th class="scoreCard" style="color: #FDD835;">Batsman - 2</th>
-                    <th class="scoreCard" style="color: #FDD835;">Over</th>
-                    <th class="scoreCard" style="color: #FDD835;">Bowler</th>
-                </tr>
-                <tr>
-                    <td class="scoreCard" style="color: white;">{{score}} - {{noOfWickets}}</td>
-                    <td class="scoreCard" style="color: white;">{{batsmen.[0]}} - {{runsTaken.[0]}}</td>
-                    <td class="scoreCard" style="color: white;">{{batsmen.[1]}} - {{runsTaken.[1]}}</td>
-                    <td class="scoreCard" style="color: white;">{{over}}</td>
-                    <td class="scoreCard" style="color: white;">{{bowler.[0]}} {{runsGiven.[0]}}-{{wicketsTaken.[0]}}</td>
-                </tr>
-            </table>
             <br><br>
-
         </tr>
     </table>
 </div>

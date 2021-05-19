@@ -26,11 +26,11 @@ export default Controller.extend({
     },
   //functions for scoreEditor
     zero() {
-
+        
     },
 
     one() {
-
+        
     },
 
     two() {
@@ -58,3 +58,4 @@ export default Controller.extend({
     },
   }
 });
+
