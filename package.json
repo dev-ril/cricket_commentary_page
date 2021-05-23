@@ -67,6 +67,7 @@
     "edition": "octane"
   },
   "dependencies": {
-    "bootstrap": "^5.0.1"
+    "bootstrap": "^5.0.1",
+    "cheers-alert": "^1.4.1"
   }
 }

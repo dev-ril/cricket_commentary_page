@@ -9,13 +9,12 @@
                 <div>
                     <Header></Header>
                     <br>
-                    <h3><button class="button" {{action 'showBody'}}>{{this.variables.button1}}</button></h3>
+                    <h3><button class="button" {{action 'showBody' }}>{{this.variables.button1}}</button></h3>
                 </div>
                 <div style="width: 500px;">
                     {{#if this.variables.isExpanded}}
                     <ScoreCard></ScoreCard>
                     <br>
-                    <h4 class="scoreEditor">Score Editor</h4>
                     <br>
                     <Score></Score>
                     <br>
@@ -24,7 +23,9 @@
                     <br>
                     <table class="scoreTable" border="1" style="border-spacing: 5px;border-radius:10px">
                         <ScoreTableHeader></ScoreTableHeader>
-                        <ScoreTableRow></ScoreTableRow>
+                        {{#if this.variables.row}}
+                        <ScoreTableRow @input_data={{over}} />
+                        {{/if}}
                     </table>
                     <br><br>
                     {{/if}}

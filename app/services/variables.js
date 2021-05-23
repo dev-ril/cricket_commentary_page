@@ -1,5 +1,6 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 export default class VariablesService extends Service {
     @tracked isExpanded = false;
@@ -17,6 +18,7 @@ export default class VariablesService extends Service {
     @tracked i = 0;
     @tracked j = 1;
     @tracked k = 0;
+    @tracked row = 1;
     @tracked batsmen = ['Ruturaj Gaikwad', 'Faf du Plessis', 'Moeen Ali', 'Suresh Raina', 'Ambati Rayudu', 'Ravindra Jadeja', 'MS Dhoni', 'Sam Curran', 'Dwayne Bravo', 'Shardul Thakur', 'Deepak Chahar'];
     @tracked bowler = ['Ravindra Jadeja', 'Sam Curran', 'Dwayne Bravo', ' Shardul Thakur', ' Deepak Chahar'];
     runsTaken = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -30,4 +32,13 @@ export default class VariablesService extends Service {
     @tracked currentBowler = this.bowler[this.k];
     @tracked runsBowler1 = this.runsGiven[this.k];
     @tracked wicketsBowler1 = this.wicketsTaken[this.k];
+    @tracked b = ['-','-','-','-','-','-'];
+    @tracked t = '-';
+    @tracked overcount = 1;
+    @tracked isTrue = true;
+
+    players= ['red', 'green', 'blue'];
+
+    selectedColor= null;
+     
 }
