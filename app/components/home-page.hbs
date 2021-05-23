@@ -1,0 +1,36 @@
+<div class="jumbo">
+    <div>
+        <p class="header">Cricket Commentary Page</p>
+    </div>
+    <br>
+    <table>
+        <tr>
+            <div class="flex-container">
+                <div>
+                    <Header></Header>
+                    <br>
+                    <h3><button class="button" {{action 'showBody'}}>{{this.variables.button1}}</button></h3>
+                </div>
+                <div style="width: 500px;">
+                    {{#if this.variables.isExpanded}}
+                    <ScoreCard></ScoreCard>
+                    <br>
+                    <h4 class="scoreEditor">Score Editor</h4>
+                    <br>
+                    <Score></Score>
+                    <br>
+                    <br>
+                    <h4 class="scoreEditor">Score Table</h4>
+                    <br>
+                    <table class="scoreTable" border="1" style="border-spacing: 5px;border-radius:10px">
+                        <ScoreTableHeader></ScoreTableHeader>
+                        <ScoreTableRow></ScoreTableRow>
+                    </table>
+                    <br><br>
+                    {{/if}}
+                    <br><br>
+                </div>
+            </div>
+        </tr>
+    </table>
+</div>
