@@ -36,9 +36,5 @@ export default class VariablesService extends Service {
     @tracked t = '-';
     @tracked overcount = 1;
     @tracked isTrue = true;
-
-    players= ['red', 'green', 'blue'];
-
-    selectedColor= null;
-     
+    @tracked tob = 0;
 }

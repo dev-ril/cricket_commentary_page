@@ -30,15 +30,31 @@ export default class ScoreComponent extends Component {
     this.variables.wicketsBowler1 = this.variables.wicketsTaken[this.variables.k];
   }
   @action
-  checkBall(value)
-  {
-    if(value=='n')
-    {
-      this.variables.score += 1;
+  checkBall(value) {
+    if (value == 'n') {
+      this.variables.score +=1;
+      this.variables.tob = 1;
     }
-    else if(value=='w')
-    {
-      this.variables.score += 1;
+    else if (value == 'w') {
+      this.variables.score +=1;
+      this.variables.tob = 2;
+    }
+    else if (value == 'c') {
+      this.variables.tob = 0;
+    }
+  }
+
+  @action
+  selectBatsman1(value) {
+    if (this.variables.currentBatsman1 != value && this.variables.currentBatsman2 != value) {
+      this.variables.currentBatsman1 = value;
+    }
+  }
+
+  @action
+  selectBatsman2(value) {
+    if (this.variables.currentBatsman1 != value && this.variables.currentBatsman2 != value) {
+      this.variables.currentBatsman2 = value;
     }
   }
 
@@ -53,25 +69,23 @@ export default class ScoreComponent extends Component {
       alert("game won!!");
     }
     else if (this.variables.noOfWickets < 9) {
-        this.variables.balls++;
-        if (this.variables.balls > 6) {
-          this.variables.currentBall++;
-          this.l = 0;
-          this.overChange();
+      if (this.variables.balls > 6) {
+        this.variables.currentBall++;
+        this.l = 0;
+        this.overChange();
+        this.swap();
+      }
+      else {
+        this.variables.b[this.variables.balls] = value;
+        this.variables.over = this.variables.forOver[this.l++] + this.variables.currentBall;
+        this.variables.score += value;
+        this.variables.runsBatsman1 += value;
+        this.variables.runsBowler1 += value;
+        if (value == 1 || value == 3) {
           this.swap();
         }
-        else {
-          this.variables.b[this.variables.balls] = value;
-          this.variables.over = this.variables.forOver[this.l++] + this.variables.currentBall;
-          this.variables.score += value;
-          this.variables.runsBatsman1 += value;
-          this.variables.runsBowler1 +=value;
-          if(value==1||value==3)
-          {
-            this.swap();
-          }
-        }
       }
+    }
   }
 
 
@@ -82,7 +96,6 @@ export default class ScoreComponent extends Component {
       alert("game lost!!");
     }
     else {
-      this.variables.balls++;
       if (this.variables.balls > 6) {
         this.variables.currentBall++;
         this.l = 0;
@@ -90,8 +103,7 @@ export default class ScoreComponent extends Component {
       }
       else {
         this.variables.i += 1;
-        if(this.variables.batsmen[this.variables.i] == this.variables.currentBatsman1 || this.variables.batsmen[this.variables.i] == this.variables.currentBatsman2)
-        {
+        if (this.variables.batsmen[this.variables.i] == this.variables.currentBatsman1 || this.variables.batsmen[this.variables.i] == this.variables.currentBatsman2) {
           this.variables.i += 1;
         }
         this.variables.over = this.variables.forOver[this.l++] + this.variables.currentBall;
