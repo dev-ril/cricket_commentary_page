@@ -18,60 +18,38 @@ export default class ScoreComponent extends Component {
   }
 
   overChange() {
+    this.variables.runsGiven[this.variables.k] = this.variables.runsBowler1;
+    this.variables.wicketsTaken[this.variables.k] = this.variables.wicketsBowler1;
     this.variables.balls = 0;
     this.variables.k += 1;
     if (this.variables.k > 4) {
       this.variables.k = 0;
     }
+    this.variables.currentBowler = this.variables.bowler[this.variables.k];
+    this.variables.runsBowler1 = this.variables.runsGiven[this.variables.k];
+    this.variables.wicketsBowler1 = this.variables.wicketsTaken[this.variables.k];
   }
-
-  @action
-  checkBatsman1(batsman)
-  {
-    if(this.variables.currentBatsman1==batsman)
-    {
-     this.variables.isTrue = false;
-    }
-    else{
-      this.variables.isTrue = true;
-    }
-  }
-
-  @action
-  checkBatsman2(batsman)
-  {
-    if(this.variables.currentBatsman2==batsman)
-    {
-     this.variables.isTrue = false;
-    }
-    else{
-      this.variables.isTrue = true;
-    }
-  }
-
   @action
   checkBall(value)
   {
-    if(value=='c')
+    if(value=='n')
     {
-      this.variables.tob = 1;
-    }
-    else if(value=='n')
-    {
-      this.variables.tob = 2;
+      this.variables.score += 1;
     }
     else if(value=='w')
     {
-      this.variables.tob = 3;
+      this.variables.score += 1;
     }
   }
 
   @action
   runs(value) {
     if (this.variables.over == this.variables.overs) {
+      this.variables.win = 2;
       alert("game lost!!");
     }
     else if (this.variables.score >= this.variables.runsNeeded) {
+      this.variables.win = 1;
       alert("game won!!");
     }
     else if (this.variables.noOfWickets < 9) {
@@ -87,15 +65,20 @@ export default class ScoreComponent extends Component {
           this.variables.over = this.variables.forOver[this.l++] + this.variables.currentBall;
           this.variables.score += value;
           this.variables.runsBatsman1 += value;
+          this.variables.runsBowler1 +=value;
+          if(value==1||value==3)
+          {
+            this.swap();
+          }
         }
       }
-
   }
 
 
   @action
   out(value) {
     if (this.variables.over == this.variables.overs || this.variables.noOfWickets > 9) {
+      this.variables.win = 2;
       alert("game lost!!");
     }
     else {
@@ -115,6 +98,7 @@ export default class ScoreComponent extends Component {
         this.variables.currentBatsman1 = this.variables.batsmen[this.variables.i];
         this.variables.runsBatsman1 = this.variables.runsTaken[this.variables.i];
         this.variables.noOfWickets += 1;
+        this.variables.wicketsBowler1 += 1;
       }
     }
   }

@@ -27,7 +27,7 @@
             <h3 class="scoreEditor">Batsman 1</h3>
                 <br>
                 <select onchanged={{action (mut this.variables.currentBatsman1) value='target.value'}} class="button" style="width: 250px;">
-                   {{#each variables.batsmen as |batsman1|}}
+                   {{#each this.variables.batsmen as |batsman1|}}
                     <option value={{batsman1}}>
                         {{batsman1}}
                     </option>
@@ -38,7 +38,7 @@
             <h3 class="scoreEditor">Batsman 2</h3>
                 <br>
                 <select onchanged={{action (mut this.variables.currentBatsman2) value='target.value'}} class="button" style="width: 250px;">
-                    {{#each variables.batsmen as |batsman2|}}
+                    {{#each this.variables.batsmen as |batsman2|}}
                     <option value={{batsman2}}>
                         {{batsman2}}
                     </option>

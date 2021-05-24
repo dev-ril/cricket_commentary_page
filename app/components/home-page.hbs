@@ -10,6 +10,10 @@
                     <Header></Header>
                     <br>
                     <h3><button class="button" {{action 'showBody' }}>{{this.variables.button1}}</button></h3>
+                    <br>
+                    {{#if this.variables.win}}
+                    <h3>Man of the match</h3>
+                    {{/if}}
                 </div>
                 <div style="width: 500px;">
                     {{#if this.variables.isExpanded}}
@@ -23,9 +27,7 @@
                     <br>
                     <table class="scoreTable" border="1" style="border-spacing: 5px;border-radius:10px">
                         <ScoreTableHeader></ScoreTableHeader>
-                        {{#if this.variables.row}}
-                        <ScoreTableRow @input_data={{over}} />
-                        {{/if}}
+                        <ScoreTableRow />   
                     </table>
                     <br><br>
                     {{/if}}
