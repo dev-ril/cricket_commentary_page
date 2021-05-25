@@ -6,6 +6,9 @@ export default class ScoreComponent extends Component {
   @service variables;
   temp;
   l = 0;
+  h = 0;
+  x = 1;
+  total = 0;
 
   swap() {
     this.temp = this.variables.currentBatsman1;
@@ -18,99 +21,133 @@ export default class ScoreComponent extends Component {
   }
 
   overChange() {
-    this.variables.runsGiven[this.variables.k] = this.variables.runsBowler1;
-    this.variables.wicketsTaken[this.variables.k] = this.variables.wicketsBowler1;
-    this.variables.balls = 0;
-    this.variables.k += 1;
-    if (this.variables.k > 4) {
+    this.variables.overcount++;
+    this.variables.runsGiven[this.variables.k] = this.variables.runsBowler1; //to update runs given by the bowler
+    this.variables.wicketsTaken[this.variables.k] = this.variables.wicketsBowler1;  //to update wickets taken by the bowler
+    this.variables.balls = 0; //to start the over from beginning
+    this.variables.k += 1; // increment the bowler
+    if (this.variables.k > 4) //suppose bowler limit reached repeat from the first bowler
+    {
       this.variables.k = 0;
     }
-    this.variables.currentBowler = this.variables.bowler[this.variables.k];
-    this.variables.runsBowler1 = this.variables.runsGiven[this.variables.k];
-    this.variables.wicketsBowler1 = this.variables.wicketsTaken[this.variables.k];
+    // this.variables.t = this.total;
+    // this.total = 0;
+    this.variables.currentBowler = this.variables.bowler[this.variables.k]; //change the bowler
+    this.variables.runsBowler1 = this.variables.runsGiven[this.variables.k]; //set runs given to current bowler
+    this.variables.wicketsBowler1 = this.variables.wicketsTaken[this.variables.k];  //set wickets taken to current bowler
   }
+
   @action
-  checkBall(value) {
-    if (value == 'n') {
-      this.variables.score +=1;
-      this.variables.tob = 1;
+  checkBall(value)  //for checking the type of ball
+  {
+    if (value == 'n') //no ball
+    {
+      this.variables.tob = 'n';   //change type of ball value to n
+      this.variables.score += 1;  //add one run to score
     }
-    else if (value == 'w') {
-      this.variables.score +=1;
-      this.variables.tob = 2;
+    else if (value == 'w')  //wide ball
+    {
+      this.variables.tob = 'w'; //change type of ball value to w
+      this.variables.score += 1;  //add one run to score
     }
-    else if (value == 'c') {
-      this.variables.tob = 0;
+    else if (value == 'c')    //correct ball
+    {
+      this.variables.tob = 'c'; //change type of ball value to c
     }
   }
 
   @action
   selectBatsman1(value) {
     if (this.variables.currentBatsman1 != value && this.variables.currentBatsman2 != value) {
+      for (this.h = 0; this.h < 11; this.h++) {
+        if (this.variables.batsmen[this.h] == this.variables.currentBatsman1) {
+          this.variables.runsTaken[this.h] = this.variables.runsBatsman1;
+        }
+      }
       this.variables.currentBatsman1 = value;
+      for (this.h = 0; this.h < 11; this.h++) {
+        if (this.variables.batsmen[this.h] == this.variables.currentBatsman1) {
+          this.variables.runsBatsman1 = this.variables.runsTaken[this.h];
+          this.variables.i = this.variables.h;
+        }
+      }
+
     }
   }
 
   @action
   selectBatsman2(value) {
     if (this.variables.currentBatsman1 != value && this.variables.currentBatsman2 != value) {
+      for (this.h = 0; this.h < 11; this.h++) {
+        if (this.variables.batsmen[this.h] == this.variables.currentBatsman2) {
+          this.variables.runsTaken[this.h] = this.variables.runsBatsman2;
+        }
+      }
       this.variables.currentBatsman2 = value;
+      for (this.h = 0; this.h < 11; this.h++) {
+        if (this.variables.batsmen[this.h] == this.variables.currentBatsman2) {
+          this.variables.runsBatsman2 = this.variables.runsTaken[this.h];
+          this.variables.i = this.variables.h;
+        }
+      }
     }
   }
 
   @action
   runs(value) {
-    if (this.variables.over == this.variables.overs) {
-      this.variables.win = 2;
+    //Checking whether overs are completed
+    if (this.variables.over == this.variables.overs || this.variables.noOfWickets > 9) {
       alert("game lost!!");
     }
+    //Checking whether required runs reached
     else if (this.variables.score >= this.variables.runsNeeded) {
-      this.variables.win = 1;
       alert("game won!!");
     }
-    else if (this.variables.noOfWickets < 9) {
-      if (this.variables.balls > 6) {
-        this.variables.currentBall++;
+    //Checking wickets gone is less than 9
+    else {
+      // this.variables.b[this.variables.balls] = value;
+      if (this.variables.tob == 'c') {
+        this.variables.balls++;     //Incrementing the no. of balls
+      }
+
+      if (this.variables.balls > 6)   //For changing to next over if no. of balls is 6
+      {
+        this.variables.currentBall++; //for mentioning over..
         this.l = 0;
         this.overChange();
         this.swap();
       }
+      //Score calculation
       else {
-        this.variables.b[this.variables.balls] = value;
-        this.variables.over = this.variables.forOver[this.l++] + this.variables.currentBall;
-        this.variables.score += value;
-        this.variables.runsBatsman1 += value;
-        this.variables.runsBowler1 += value;
-        if (value == 1 || value == 3) {
-          this.swap();
-        }
-      }
-    }
-  }
-
-
-  @action
-  out(value) {
-    if (this.variables.over == this.variables.overs || this.variables.noOfWickets > 9) {
-      this.variables.win = 2;
-      alert("game lost!!");
-    }
-    else {
-      if (this.variables.balls > 6) {
-        this.variables.currentBall++;
-        this.l = 0;
-        this.overChange();
-      }
-      else {
-        this.variables.i += 1;
-        if (this.variables.batsmen[this.variables.i] == this.variables.currentBatsman1 || this.variables.batsmen[this.variables.i] == this.variables.currentBatsman2) {
+        if (value == 'out') {
+          this.variables.outlist[this.variables.i] = 1;
           this.variables.i += 1;
+          if (this.variables.batsmen[this.variables.i] == this.variables.currentBatsman1 || this.variables.batsmen[this.variables.i] == this.variables.currentBatsman2) {
+            this.variables.i += 1;
+          }
+          if (this.variables.tob == 'c') 
+          {
+            this.variables.over = this.variables.forOver[this.l++] + this.variables.currentBall;
+            this.variables.currentBatsman1 = this.variables.batsmen[this.variables.i];
+            this.variables.runsBatsman1 = this.variables.runsTaken[this.variables.i];
+            this.variables.noOfWickets += 1;
+            this.variables.wicketsBowler1 += 1;
+          }
         }
-        this.variables.over = this.variables.forOver[this.l++] + this.variables.currentBall;
-        this.variables.currentBatsman1 = this.variables.batsmen[this.variables.i];
-        this.variables.runsBatsman1 = this.variables.runsTaken[this.variables.i];
-        this.variables.noOfWickets += 1;
-        this.variables.wicketsBowler1 += 1;
+        else {
+          // this.total += value;  //for displaying over total
+          if (this.variables.tob == 'c') {
+            this.variables.over = this.variables.forOver[this.l++] + this.variables.currentBall;//for mentioning over
+          }
+          this.variables.score += value;  //for main score 
+          this.variables.runsBatsman1 += value; //for changing current batsman runs
+          this.variables.runsTaken[this.variables.i] = this.variables.runsBatsman1; //to update the original value
+          this.variables.runsBowler1 += value;  //for changing runs given by current bowler
+          if (value == 1 || value == 3) //for swapping batsmen
+          {
+            this.swap();
+          }
+        }
       }
     }
   }

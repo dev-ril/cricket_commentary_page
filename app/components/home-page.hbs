@@ -25,9 +25,11 @@
                     <br>
                     <h4 class="scoreEditor">Score Table</h4>
                     <br>
-                    <table class="scoreTable" border="1" style="border-spacing: 5px;border-radius:10px">
+                    <table class="scoreTable" border="1" style="border-spacing: 3px;border-radius:5px">
                         <ScoreTableHeader></ScoreTableHeader>
-                        <ScoreTableRow />   
+                        {{#each this.variables.overlist}}
+                            <ScoreTableRow />
+                        {{/each}}
                     </table>
                     <br><br>
                     {{/if}}

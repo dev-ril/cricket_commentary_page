@@ -20,13 +20,13 @@
                 <button class="score-button" {{action 'runs' 4}}>4</button>
                 <button class="score-button" {{action 'runs' 5}}>5</button>
                 <button class="score-button" {{action 'runs' 6}}>6</button>
-                <button class="score-button" {{action 'out' 'out' }}>Out</button>
+                <button class="score-button" {{action 'runs' 'out'}}>Out</button>
             </div>
         </th>
         <th>
             <h3 class="scoreEditor">Batsman 1</h3>
             <br>
-            <select onchange={{action 'selectBatsman1' value="target.value" }} class="button" style="width: 250px;">
+            <select onchange={{action 'selectBatsman1' value="target.value"}} class="button" style="width: 250px;">
                 {{#each this.variables.batsmen as |batsman1|}}
                 <option value={{batsman1}}>
                     {{batsman1}}

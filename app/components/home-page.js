@@ -11,4 +11,9 @@ export default class HomePageComponent extends Component {
     showBody() {
         this.variables.isExpanded = true;
     }
+    @action
+    addRow()
+    {
+        return true;
+    }
 }
