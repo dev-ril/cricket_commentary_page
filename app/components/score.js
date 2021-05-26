@@ -7,7 +7,7 @@ import { tracked } from '@glimmer/tracking';
 export default class ScoreComponent extends Component {
   @service variables;
   temp;
-  temp2;
+
   l = 0;
   h = 0;
   @tracked oc = 2;
@@ -19,9 +19,9 @@ export default class ScoreComponent extends Component {
     this.variables.currentBatsman1 = this.variables.currentBatsman2;
     this.variables.currentBatsman2 = this.temp;
 
-    this.temp2 = this.variables.runsBatsman1;
+    this.t = this.variables.runsBatsman1;
     this.variables.runsBatsman1 = this.variables.runsBatsman2;
-    this.variables.runsBatsman2 = this.temp2;
+    this.variables.runsBatsman2 = this.t;
   }
 
   overChange() {
@@ -126,12 +126,13 @@ export default class ScoreComponent extends Component {
       }
       if (this.variables.balls > 6)   //For changing to next over if no. of balls is 6
       {
+        this.swap();
         this.variables.overlist.pushObject(this.oc);
         this.oc++;
         this.variables.currentBall++; //for mentioning over..
         this.l = 0;
         this.overChange();
-        this.swap();
+      
       }
       //Score calculation
       else {

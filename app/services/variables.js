@@ -52,7 +52,6 @@ export default class VariablesService extends Service {
     @tracked overlist = [1];
     @tracked x = 1;
     @tracked b = [ '-', '-', '-', '-', '-','-'];
-    @tracked t = [0];
     @tracked overcount = 1;
     @tracked isTrue = false;
     @tracked val = '-';
