@@ -17,15 +17,16 @@ export default class VariablesService extends Service {
     @tracked balls = 0;
     @tracked score = 0;
     @tracked noOfWickets = 0;
-    
+
     //iterator variables
     @tracked i = 0;
     @tracked j = 1;
     @tracked k = 0;
-    
+
     //variables for batsmen
     @tracked batsmen = ['Ruturaj Gaikwad', 'Faf du Plessis', 'Moeen Ali', 'Suresh Raina', 'Ambati Rayudu', 'Ravindra Jadeja', 'MS Dhoni', 'Sam Curran', 'Dwayne Bravo', 'Shardul Thakur', 'Deepak Chahar'];
     @tracked runsTaken = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    @tracked outlist = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     @tracked currentBatsman1 = this.batsmen[this.i];
     @tracked runsBatsman1 = this.runsTaken[this.i];
     @tracked currentBatsman2 = this.batsmen[this.j];
@@ -39,19 +40,18 @@ export default class VariablesService extends Service {
     @tracked runsBowler1 = this.runsGiven[this.k];
     @tracked wicketsBowler1 = this.wicketsTaken[this.k];
 
-
-    @tracked overlist=[0,1,2,3,4,5,6,7,8,9];
-    @tracked outlist=[0,0,0,0,0,0,0,0,0,0];
-
     //variables for overs
     @tracked over = 0;
-    @tracked forOver = [0.1,0.2,0.3,0.4,0.5,1];
+    @tracked forOver = [0.1, 0.2, 0.3, 0.4, 0.5, 1];
     @tracked currentBall = 0;
-  
+
+    //for mentioning type of ball
     @tracked tob = 'c';
-    
-    @tracked b = ['-','-','-','-','-','-'];
+
+    @tracked overlist = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+   
+    @tracked b = ['-', '-', '-', '-', '-', '-'];
     @tracked t = '-';
     @tracked overcount = 1;
-    @tracked isTrue = [true,false,false,false,false,false,false,false,false,false];
+    @tracked isTrue = [true, false, false, false, false, false, false, false, false, false];
 }

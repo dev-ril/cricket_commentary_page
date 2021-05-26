@@ -8,9 +8,4 @@ export default class HomePageComponent extends Component {
     
     @service variables;
   
-    @action
-    addRow()
-    {
-        return true;
-    }
 }

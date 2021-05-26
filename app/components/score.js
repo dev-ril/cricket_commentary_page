@@ -10,7 +10,8 @@ export default class ScoreComponent extends Component {
   x = 1;
   total = 0;
 
-  swap() {
+  swap() //for swapping batsmen while over change (or) during odd runs
+  {
     this.temp = this.variables.currentBatsman1;
     this.variables.currentBatsman1 = this.variables.currentBatsman2;
     this.variables.currentBatsman2 = this.temp;
@@ -26,12 +27,15 @@ export default class ScoreComponent extends Component {
     this.variables.wicketsTaken[this.variables.k] = this.variables.wicketsBowler1;  //to update wickets taken by the bowler
     this.variables.balls = 0; //to start the over from beginning
     this.variables.k += 1; // increment the bowler
+
     if (this.variables.k > 4) //suppose bowler limit reached repeat from the first bowler
     {
       this.variables.k = 0;
     }
+
     // this.variables.t = this.total;
     // this.total = 0;
+
     this.variables.currentBowler = this.variables.bowler[this.variables.k]; //change the bowler
     this.variables.runsBowler1 = this.variables.runsGiven[this.variables.k]; //set runs given to current bowler
     this.variables.wicketsBowler1 = this.variables.wicketsTaken[this.variables.k];  //set wickets taken to current bowler
@@ -57,16 +61,23 @@ export default class ScoreComponent extends Component {
   }
 
   @action
-  selectBatsman1(value) {
-    if (this.variables.currentBatsman1 != value && this.variables.currentBatsman2 != value) {
-      for (this.h = 0; this.h < 11; this.h++) {
+  selectBatsman1(value) //for selecting batsman 1
+  {
+    if (this.variables.currentBatsman1 != value && this.variables.currentBatsman2 != value) //to check whether selected batsman is not  same as the current batsmen
+    {
+      for (this.h = 0; this.h < 11; this.h++)   //to update the runs taken by current batsman before changing
+      {
         if (this.variables.batsmen[this.h] == this.variables.currentBatsman1) {
           this.variables.runsTaken[this.h] = this.variables.runsBatsman1;
         }
       }
-      this.variables.currentBatsman1 = value;
-      for (this.h = 0; this.h < 11; this.h++) {
-        if (this.variables.batsmen[this.h] == this.variables.currentBatsman1) {
+
+      this.variables.currentBatsman1 = value; //changing the selected batsman
+
+      for (this.h = 0; this.h < 11; this.h++) 
+      {
+        if (this.variables.batsmen[this.h] == this.variables.currentBatsman1) //setting the runsTaken value for currentBatsman
+        {
           this.variables.runsBatsman1 = this.variables.runsTaken[this.h];
           this.variables.i = this.variables.h;
         }
@@ -76,7 +87,8 @@ export default class ScoreComponent extends Component {
   }
 
   @action
-  selectBatsman2(value) {
+  selectBatsman2(value)   //for selecting batsman 2
+  {
     if (this.variables.currentBatsman1 != value && this.variables.currentBatsman2 != value) {
       for (this.h = 0; this.h < 11; this.h++) {
         if (this.variables.batsmen[this.h] == this.variables.currentBatsman2) {
@@ -98,6 +110,7 @@ export default class ScoreComponent extends Component {
     //Checking whether overs are completed
     if (this.variables.over == this.variables.overs || this.variables.noOfWickets > 9) {
       alert("game lost!!");
+      console.log(this.variables.outlist);
     }
     //Checking whether required runs reached
     else if (this.variables.score >= this.variables.runsNeeded) {
@@ -119,7 +132,8 @@ export default class ScoreComponent extends Component {
       }
       //Score calculation
       else {
-        if (value == 'out') {
+        if (value == 'out') 
+        {
           this.variables.outlist[this.variables.i] = 1;
           this.variables.i += 1;
           if (this.variables.batsmen[this.variables.i] == this.variables.currentBatsman1 || this.variables.batsmen[this.variables.i] == this.variables.currentBatsman2) {
