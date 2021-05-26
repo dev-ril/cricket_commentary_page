@@ -1,14 +1,17 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
+
 
 export default class ScoreComponent extends Component {
   @service variables;
   temp;
+  temp2;
   l = 0;
   h = 0;
-  x = 1;
-  total = 0;
+  @tracked oc = 2;
+  @tracked total = 0;
 
   swap() //for swapping batsmen while over change (or) during odd runs
   {
@@ -16,9 +19,9 @@ export default class ScoreComponent extends Component {
     this.variables.currentBatsman1 = this.variables.currentBatsman2;
     this.variables.currentBatsman2 = this.temp;
 
-    this.t = this.variables.runsBatsman1;
+    this.temp2 = this.variables.runsBatsman1;
     this.variables.runsBatsman1 = this.variables.runsBatsman2;
-    this.variables.runsBatsman2 = this.t;
+    this.variables.runsBatsman2 = this.temp2;
   }
 
   overChange() {
@@ -33,8 +36,8 @@ export default class ScoreComponent extends Component {
       this.variables.k = 0;
     }
 
-    // this.variables.t = this.total;
-    // this.total = 0;
+    this.variables.t.pushObject(this.total);
+    this.total = 0;
 
     this.variables.currentBowler = this.variables.bowler[this.variables.k]; //change the bowler
     this.variables.runsBowler1 = this.variables.runsGiven[this.variables.k]; //set runs given to current bowler
@@ -110,7 +113,7 @@ export default class ScoreComponent extends Component {
     //Checking whether overs are completed
     if (this.variables.over == this.variables.overs || this.variables.noOfWickets > 9) {
       alert("game lost!!");
-      console.log(this.variables.outlist);
+      console.log(this.variables.overlist);
     }
     //Checking whether required runs reached
     else if (this.variables.score >= this.variables.runsNeeded) {
@@ -118,13 +121,13 @@ export default class ScoreComponent extends Component {
     }
     //Checking wickets gone is less than 9
     else {
-      // this.variables.b[this.variables.balls] = value;
       if (this.variables.tob == 'c') {
         this.variables.balls++;     //Incrementing the no. of balls
       }
-
       if (this.variables.balls > 6)   //For changing to next over if no. of balls is 6
       {
+        this.variables.overlist.pushObject(this.oc);
+        this.oc++;
         this.variables.currentBall++; //for mentioning over..
         this.l = 0;
         this.overChange();
@@ -134,6 +137,9 @@ export default class ScoreComponent extends Component {
       else {
         if (value == 'out') 
         {
+          this.variables.val = value;
+          this.variables.isTrue = true;
+          this.variables.isTrue = false;
           this.variables.outlist[this.variables.i] = 1;
           this.variables.i += 1;
           if (this.variables.batsmen[this.variables.i] == this.variables.currentBatsman1 || this.variables.batsmen[this.variables.i] == this.variables.currentBatsman2) {
@@ -149,7 +155,7 @@ export default class ScoreComponent extends Component {
           }
         }
         else {
-          // this.total += value;  //for displaying over total
+          this.total += value;  //for displaying over total
           if (this.variables.tob == 'c') {
             this.variables.over = this.variables.forOver[this.l++] + this.variables.currentBall;//for mentioning over
           }

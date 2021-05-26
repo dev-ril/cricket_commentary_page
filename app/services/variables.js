@@ -48,10 +48,12 @@ export default class VariablesService extends Service {
     //for mentioning type of ball
     @tracked tob = 'c';
 
-    @tracked overlist = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-   
-    @tracked b = ['-', '-', '-', '-', '-', '-'];
-    @tracked t = '-';
+
+    @tracked overlist = [1];
+    @tracked x = 1;
+    @tracked b = [ '-', '-', '-', '-', '-','-'];
+    @tracked t = [0];
     @tracked overcount = 1;
-    @tracked isTrue = [true, false, false, false, false, false, false, false, false, false];
+    @tracked isTrue = false;
+    @tracked val = '-';
 }
