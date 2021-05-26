@@ -7,6 +7,7 @@ export default class VariablesService extends Service {
     @tracked isExpanded = false;
     @tracked isPressed = 0;
 
+    //variables for team-details
     button1 = "Start Game";
     battingTeam = "Chennai Super Kings";
     runsNeeded = 100;

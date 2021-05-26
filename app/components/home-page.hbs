@@ -1,40 +1,18 @@
 <div class="jumbo">
     <div>
-        <p class="header">Cricket Commentary Page</p>
+    <p class="header">Cricket Commentary Page</p>
     </div>
     <br>
     <table>
         <tr>
             <div class="flex-container">
                 <div>
-                    <Header></Header>
-                    <br>
-                    <h3><button class="button" {{action 'showBody' }}>{{this.variables.button1}}</button></h3>
-                    <br>
-                    {{#if this.variables.win}}
-                    <h3>Man of the match</h3>
-                    {{/if}}
+                    {{body/team-details}}
                 </div>
-                <div style="width: 500px;">
-                    {{#if this.variables.isExpanded}}
-                    <ScoreCard></ScoreCard>
-                    <br>
-                    <br>
-                    <Score></Score>
-                    <br>
-                    <br>
-                    <h4 class="scoreEditor">Score Table</h4>
-                    <br>
-                    <table class="scoreTable" border="1" style="border-spacing: 3px;border-radius:5px">
-                        <ScoreTableHeader></ScoreTableHeader>
-                        {{#each this.variables.overlist}}
-                            <ScoreTableRow />
-                        {{/each}}
-                    </table>
-                    <br><br>
-                    {{/if}}
-                    <br><br>
+                <div>
+                    {{body/score-details}}
                 </div>
+                 
             </div>
         </tr>
     </table>

@@ -4,7 +4,6 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 
-export default class ScoreTableRowComponent extends Component {
+export default class BodyScoreDetailsComponent extends Component {
     @service variables;
-
 }

@@ -1,16 +1,16 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
+import EmberResolver from 'ember-resolver';
 import { inject as service } from '@ember/service';
 
-
-
-export default class HomePageComponent extends Component {
-    
+export default class BodyTeamDetailsComponent extends Component {
     @service variables;
-  
     @action
-    addRow()
-    {
-        return true;
+    showBody() {
+        this.variables.isExpanded = true;
     }
 }
+ 
+
+
+
