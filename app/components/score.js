@@ -7,10 +7,11 @@ import { tracked } from '@glimmer/tracking';
 export default class ScoreComponent extends Component {
   @service variables;
   temp;
-
+  temp2;
   l = 0;
   h = 0;
-  @tracked oc = 2;
+  m = 0;
+  @tracked oc = 1;
   @tracked total = 0;
 
   swap() //for swapping batsmen while over change (or) during odd runs
@@ -19,9 +20,9 @@ export default class ScoreComponent extends Component {
     this.variables.currentBatsman1 = this.variables.currentBatsman2;
     this.variables.currentBatsman2 = this.temp;
 
-    this.t = this.variables.runsBatsman1;
+    this.temp2 = this.variables.runsBatsman1;
     this.variables.runsBatsman1 = this.variables.runsBatsman2;
-    this.variables.runsBatsman2 = this.t;
+    this.variables.runsBatsman2 = this.temp2;
   }
 
   overChange() {
@@ -35,10 +36,6 @@ export default class ScoreComponent extends Component {
     {
       this.variables.k = 0;
     }
-
-    this.variables.t.pushObject(this.total);
-    this.total = 0;
-
     this.variables.currentBowler = this.variables.bowler[this.variables.k]; //change the bowler
     this.variables.runsBowler1 = this.variables.runsGiven[this.variables.k]; //set runs given to current bowler
     this.variables.wicketsBowler1 = this.variables.wicketsTaken[this.variables.k];  //set wickets taken to current bowler
@@ -64,9 +61,22 @@ export default class ScoreComponent extends Component {
   }
 
   @action
+  checkOut(value)
+  {
+    for(var n =0;n<10;n++)
+    {
+      if(this.variables.outlist[n]==value)
+      {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  @action
   selectBatsman1(value) //for selecting batsman 1
   {
-    if (this.variables.currentBatsman1 != value && this.variables.currentBatsman2 != value) //to check whether selected batsman is not  same as the current batsmen
+    if (this.variables.currentBatsman1 != value && this.variables.currentBatsman2 != value && this.checkOut(value)) //to check whether selected batsman is not  same as the current batsmen
     {
       for (this.h = 0; this.h < 11; this.h++)   //to update the runs taken by current batsman before changing
       {
@@ -82,7 +92,7 @@ export default class ScoreComponent extends Component {
         if (this.variables.batsmen[this.h] == this.variables.currentBatsman1) //setting the runsTaken value for currentBatsman
         {
           this.variables.runsBatsman1 = this.variables.runsTaken[this.h];
-          this.variables.i = this.variables.h;
+          this.variables.i = this.h;
         }
       }
 
@@ -92,7 +102,7 @@ export default class ScoreComponent extends Component {
   @action
   selectBatsman2(value)   //for selecting batsman 2
   {
-    if (this.variables.currentBatsman1 != value && this.variables.currentBatsman2 != value) {
+    if (this.variables.currentBatsman1 != value && this.variables.currentBatsman2 != value && this.checkOut(value)) {
       for (this.h = 0; this.h < 11; this.h++) {
         if (this.variables.batsmen[this.h] == this.variables.currentBatsman2) {
           this.variables.runsTaken[this.h] = this.variables.runsBatsman2;
@@ -102,7 +112,7 @@ export default class ScoreComponent extends Component {
       for (this.h = 0; this.h < 11; this.h++) {
         if (this.variables.batsmen[this.h] == this.variables.currentBatsman2) {
           this.variables.runsBatsman2 = this.variables.runsTaken[this.h];
-          this.variables.i = this.variables.h;
+          this.variables.i = this.h;
         }
       }
     }
@@ -112,8 +122,9 @@ export default class ScoreComponent extends Component {
   runs(value) {
     //Checking whether overs are completed
     if (this.variables.over == this.variables.overs || this.variables.noOfWickets > 9) {
+      this.variables.overlist.pushObject(this.oc);
+      this.oc++;
       alert("game lost!!");
-      console.log(this.variables.overlist);
     }
     //Checking whether required runs reached
     else if (this.variables.score >= this.variables.runsNeeded) {
@@ -121,6 +132,7 @@ export default class ScoreComponent extends Component {
     }
     //Checking wickets gone is less than 9
     else {
+     
       if (this.variables.tob == 'c') {
         this.variables.balls++;     //Incrementing the no. of balls
       }
@@ -131,17 +143,24 @@ export default class ScoreComponent extends Component {
         this.oc++;
         this.variables.currentBall++; //for mentioning over..
         this.l = 0;
+        this.variables.t[0] = this.total;
+        this.total = 0;
         this.overChange();
-      
       }
       //Score calculation
       else {
+        this.variables.b[this.m] = value;
+        this.m++;
+        if(this.m>5)
+        {
+          this.m=0;
+        }
         if (value == 'out') 
         {
           this.variables.val = value;
           this.variables.isTrue = true;
           this.variables.isTrue = false;
-          this.variables.outlist[this.variables.i] = 1;
+          this.variables.outlist.pushObject(this.variables.currentBatsman1);
           this.variables.i += 1;
           if (this.variables.batsmen[this.variables.i] == this.variables.currentBatsman1 || this.variables.batsmen[this.variables.i] == this.variables.currentBatsman2) {
             this.variables.i += 1;

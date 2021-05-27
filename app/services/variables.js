@@ -5,7 +5,6 @@ import { action } from '@ember/object';
 export default class VariablesService extends Service {
 
     @tracked isExpanded = false;
-    @tracked isPressed = 0;
 
     //variables for team-details
     button1 = "Start Game";
@@ -26,7 +25,7 @@ export default class VariablesService extends Service {
     //variables for batsmen
     @tracked batsmen = ['Ruturaj Gaikwad', 'Faf du Plessis', 'Moeen Ali', 'Suresh Raina', 'Ambati Rayudu', 'Ravindra Jadeja', 'MS Dhoni', 'Sam Curran', 'Dwayne Bravo', 'Shardul Thakur', 'Deepak Chahar'];
     @tracked runsTaken = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    @tracked outlist = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    @tracked outlist = [];
     @tracked currentBatsman1 = this.batsmen[this.i];
     @tracked runsBatsman1 = this.runsTaken[this.i];
     @tracked currentBatsman2 = this.batsmen[this.j];
@@ -48,11 +47,8 @@ export default class VariablesService extends Service {
     //for mentioning type of ball
     @tracked tob = 'c';
 
-
-    @tracked overlist = [1];
-    @tracked x = 1;
+    //for overs table
+    @tracked overlist = [];
     @tracked b = [ '-', '-', '-', '-', '-','-'];
-    @tracked overcount = 1;
-    @tracked isTrue = false;
-    @tracked val = '-';
+    @tracked t = [0];
 }
