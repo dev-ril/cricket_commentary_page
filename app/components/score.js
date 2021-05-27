@@ -48,11 +48,13 @@ export default class ScoreComponent extends Component {
     {
       this.variables.tob = 'n';   //change type of ball value to n
       this.variables.score += 1;  //add one run to score
+      this.total += 1;
     }
     else if (value == 'w')  //wide ball
     {
       this.variables.tob = 'w'; //change type of ball value to w
       this.variables.score += 1;  //add one run to score
+      this.total += 1;
     }
     else if (value == 'c')    //correct ball
     {
