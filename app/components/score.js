@@ -13,6 +13,7 @@ export default class ScoreComponent extends Component {
   @tracked oc = 1;
   @tracked total = 0;
   @tracked extras = 0;
+  @tracked extrasRuns = 0;
 
 
   swap() //for swapping batsmen while over change (or) during odd runs
@@ -81,6 +82,7 @@ export default class ScoreComponent extends Component {
         }
         this.variables.t[0] = this.total;
         this.variables.e[0] = this.extras;
+        this.variables.e[1] = this.extrasRuns;
         
       }
       alert("game lost!!");
@@ -99,6 +101,7 @@ export default class ScoreComponent extends Component {
         }
         this.variables.t[0] = this.total;
         this.variables.e[0] = this.extras;
+        this.variables.e[1] = this.extrasRuns;
 
       }
       alert("game won!!");
@@ -111,7 +114,7 @@ export default class ScoreComponent extends Component {
         this.variables.balls++;     //Incrementing the no. of balls
       }
       if (this.variables.tob == 'n' || this.variables.tob == 'w') {
-        this.variables.extraRuns.pushObject(value);     //Incrementing the no. of balls
+        this.extrasRuns = value;    //Incrementing the no. of balls
       }
       if (this.variables.balls > 6)   //For changing to next over if no. of balls is 6
       {
@@ -124,6 +127,8 @@ export default class ScoreComponent extends Component {
         this.total = 0;
         this.variables.e[0] = this.extras;
         this.extras = 0;
+        this.variables.e[1] = this.extrasRuns;
+        this.extrasRuns = 0;
         this.overChange();
       }
       //Score calculation
