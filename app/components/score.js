@@ -10,10 +10,11 @@ export default class ScoreComponent extends Component {
   temp;
   @tracked count = 0;
   @tracked m = 0;
-  @tracked oc = 1;
+  @tracked oc = 2;
   @tracked total = 0;
   @tracked extras = 0;
   @tracked extrasRuns = 0;
+  overno = this.variables.overlist[0];
   runsneeded = this.variables.runsNeeded;
 
   swap() //for swapping batsmen while over change (or) during odd runs
@@ -25,6 +26,10 @@ export default class ScoreComponent extends Component {
     this.temp = this.variables.runsBatsman1;
     this.variables.runsBatsman1 = this.variables.runsBatsman2;
     this.variables.runsBatsman2 = this.temp;
+
+      this.temp = this.variables.i;
+      this.variables.i = this.variables.j;
+      this.variables.j = this.temp;
   }
 
   overChange() {
@@ -87,41 +92,30 @@ export default class ScoreComponent extends Component {
 
   @action
   runs(value) {
+    this.variables.v = value;
     //Checking whether overs are completed
     if (this.variables.over == this.variables.totalOvers || this.variables.wicketsGone > 9) {
-      if (this.count == 0) {
-        this.count++;
-        this.variables.overlist.pushObject(this.oc);
-        while (this.m < 6 && this.m != 0) {
-          this.variables.b[this.m] = '-';
-          this.m++;
-        }
-        this.variables.t[0] = this.total;
-        this.variables.e[0] = this.extras;
-        this.variables.e[1] = this.extrasRuns;
-        
-      }
+        // this.variables.e[0] = this.extras;
+        // this.variables.e[1] = this.extrasRuns;
+        this.variables.finalTotal = this.total;
+        this.variables.isEnded = true;
       alert("game lost!!");
-      this.variables.bestBowler = this.ManOftheMatch2();
+      this.ManOftheMatch2();
+      console.log(this.variables.bestBowler);
+      this.variables.bestPlayer = this.variables.bestBowler;
     }
 
 
     //Checking whether required runs reached
     else if (this.variables.score >= this.runsneeded) {
-      if (this.count == 0) {
-        this.count++;
-        this.variables.overlist.pushObject(this.oc);
-        while (this.m < 6 && this.m != 0) {
-          this.variables.b[this.m] = '-';
-          this.m++;
-        }
-        this.variables.t[0] = this.total;
-        this.variables.e[0] = this.extras;
-        this.variables.e[1] = this.extrasRuns;
-
-      }
+        // this.variables.e[0] = this.extras;
+        // this.variables.e[1] = this.extrasRuns;
+        this.variables.finalTotal = this.total;
+        this.variables.isEnded = true;
       alert("game won!!");
       this.ManOftheMatch1();
+      console.log(this.variables.bestBatsman);
+      this.variables.bestPlayer = this.variables.bestBatsman;
     }
 
     //Checking wickets gone is less than 9
@@ -135,21 +129,39 @@ export default class ScoreComponent extends Component {
       if (this.variables.balls > 6)   //For changing to next over if no. of balls is 6
       {
         this.swap();
+        this.variables.bb = this.variables.b;
+        this.variables.tt = this.variables.t;
+        this.variables.overlist[(this.oc)-2] = 0;
         this.variables.overlist.pushObject(this.oc);
         this.oc++;
         this.variables.currentBall++; //for mentioning over..
-        console.log(this.variables.extraRuns);
+        console.log(this.variables.xx);
         this.variables.t[0] = this.total;
+        this.variables.tt = this.variables.t;
         this.total = 0;
+        this.variables.overlist[this.oc]
         this.variables.e[0] = this.extras;
         this.extras = 0;
         this.variables.e[1] = this.extrasRuns;
         this.extrasRuns = 0;
         this.overChange();
+        
       }
       //Score calculation 
       else {
+        if(this.m == 0)
+        {
+        this.variables.xx[0] =this.oc-1;
+        this.variables.b[0] = '-';
+        this.variables.b[1] = '-';
+        this.variables.b[2] = '-';
+        this.variables.b[3] = '-';
+        this.variables.b[4] = '-';
+        this.variables.b[5] = '-';
+        }
+        
         this.variables.b[this.m] = value;
+        this.variables.b = this.variables.b; 
         this.m++;
         if (this.m > 5) {
           this.m = 0;
@@ -189,6 +201,7 @@ export default class ScoreComponent extends Component {
           this.variables.score += value;
           this.variables.runsBatsman1 += value; //for changing current batsman runs
           this.variables.runsTaken[this.variables.i] = this.variables.runsBatsman1; //to update the original value
+          this.variables.runsTaken = this.variables.runsTaken;
           this.variables.runsBowler1 += value;  //for changing runs given by current bowler
 
           //for swapping batsmen
@@ -263,6 +276,31 @@ export default class ScoreComponent extends Component {
     for (this.m = 0; this.m < 11; this.m++) {
       if (this.variables.runsTaken[this.m] == maxRuns) {
         this.variables.bestBatsman = this.variables.batsmen[this.m];
+      }
+    }
+  }
+  @action
+  ManOftheMatch2() {
+    var maxWickets = Math.max(...this.variables.wicketsTaken);
+    var flag = 0;
+    var minRuns = Math.max(...this.variables.runsGiven);
+    for (this.m = 0; this.m < 5; this.m++) {
+      if (this.variables.wicketsTaken[this.m] == maxWickets) {
+        if(this.variables.runsGiven[this.m]<minRuns)
+        {
+          this.variables.bestBowler = this.variables.bowlers[this.m];
+          minRuns = this.variables.runsGiven[this.m];
+          flag = 1;
+        }
+      }
+    }
+    if(flag == 0)
+    {
+      for (this.m = 0; this.m < 5; this.m++) {
+        if (this.variables.wicketsTaken[this.m] == maxWickets) {
+            this.variables.bestBowler = this.variables.bowlers[this.m];
+            minRuns = this.variables.runsGiven[this.m];
+        }
       }
     }
   }

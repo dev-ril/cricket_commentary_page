@@ -13,3 +13,9 @@
 <h3><button class="button" {{action 'showBody' }}>{{this.variables.button1}}</button></h3>
 <br>
 <br>
+{{#if this.variables.isEnded}}
+<h4>Man of the Match:</h4>
+<br>
+<h3 class="scoreCard">{{this.variables.bestPlayer}}</h3>
+{{/if}}
+<br>

@@ -19,6 +19,7 @@ export default class VariablesService extends Service {
 
     //iterator variables
     @tracked i = 0;
+    @tracked ii = 0;
     @tracked j = 1;
     @tracked k = 0;
     @tracked h = 0;
@@ -50,15 +51,25 @@ export default class VariablesService extends Service {
     @tracked tob = 'c';
 
     //for overs table
-    @tracked overlist = [];
-    @tracked b = [];
-    @tracked e = [0];
+    @tracked overlist = [1];
+    @tracked b = ['-','-','-','-','-','-'];
     @tracked t = [0];
-    @tracked extraRuns =[];
+    @tracked finalTotal = '-';
 
+    bb = [];
+    tt = [0];
+    xx = [1];
+
+    @tracked e = [0];  
+    @tracked extraRuns =[];
+   
     //for man of the match
     @tracked bestBatsman;
     @tracked bestBowler;
+    @tracked bestPlayer;
 
-    @tracked isTrue = false;
+    @tracked forColour = true;
+    @tracked isEnded = false;
+
+
 }

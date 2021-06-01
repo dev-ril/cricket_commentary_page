@@ -8,7 +8,7 @@
             </tr>
             {{#each this.variables.batsmen as |batsman|}}
             <tr style="height:40px;width:40px">
-                {{#if true}}
+                {{#if this.checkOut}}
                 <td style="height:40px;width:90px">{{batsman}}</td>
                 {{else}}
                 <td style="color: red;">{{batsman}}</td>
@@ -24,7 +24,7 @@
             </tr>
             {{#each this.variables.runsTaken as |runs|}}
             <tr style="height:40px;width:40px">
-                {{#if true}}
+                {{#if this.variables.forColour}}
                 <td style="height:40px;width:40px">{{runs}}</td>
                 {{else}}
                 <td style="color: red;">{{runs}}</td>

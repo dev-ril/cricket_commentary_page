@@ -29,10 +29,10 @@
             <select onchange={{action 'selectBatsman1' value="target.value" }} class="button" style="width: 250px;">
                 <option value={{this.variables.currentBatsman1}} selected="hidden">Select</option>
                 {{#each this.variables.batsmanList as |batsman1|}}
-                <option value="{{batsman1}}">
+                <option value={{batsman1}}>
                     {{batsman1}}
                 </option>
-                {{/each}}
+                {{/each}} 
             </select>
         </th>
         <th>

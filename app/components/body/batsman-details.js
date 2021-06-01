@@ -19,3 +19,4 @@ export default class BodyBatsmanDetailsComponent extends Component {
         return true;
     }
 }
+    
