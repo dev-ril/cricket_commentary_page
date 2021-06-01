@@ -9,8 +9,8 @@ export default class VariablesService extends Service {
     //variables for team-details
     @tracked button1 = "Start Game";
     battingTeam = "Chennai Super Kings";
-    runsNeeded = 100;
-    totalOvers = 10;
+    @tracked runsNeeded = 100;
+    @tracked totalOvers = 10;
 
     //variables for score-details
     @tracked balls = 0;
@@ -25,6 +25,7 @@ export default class VariablesService extends Service {
 
     //variables for batsmen
     @tracked batsmen = ['Ruturaj Gaikwad', 'Faf du Plessis', 'Moeen Ali', 'Suresh Raina', 'Ambati Rayudu', 'Ravindra Jadeja', 'MS Dhoni', 'Sam Curran', 'Dwayne Bravo', 'Shardul Thakur', 'Deepak Chahar'];
+    @tracked batsmanList = ['Ruturaj Gaikwad', 'Faf du Plessis', 'Moeen Ali', 'Suresh Raina', 'Ambati Rayudu', 'Ravindra Jadeja', 'MS Dhoni', 'Sam Curran', 'Dwayne Bravo', 'Shardul Thakur', 'Deepak Chahar'];
     @tracked runsTaken = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     @tracked outList = [];
     @tracked currentBatsman1 = this.batsmen[this.i];
@@ -59,4 +60,5 @@ export default class VariablesService extends Service {
     @tracked bestBatsman;
     @tracked bestBowler;
 
+    @tracked isTrue = false;
 }

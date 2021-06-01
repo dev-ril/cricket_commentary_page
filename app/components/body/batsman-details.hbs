@@ -1,0 +1,36 @@
+<h3 class="scoreEditor">Runs Table</h3>
+<br>
+<div class="flex-container">
+    <div style="width: 150px;">
+        <table class="runsTable1" border="1" style="border-spacing: 2.5px;border-radius:5px">
+            <tr>
+                <th>Batsman Name</th>
+            </tr>
+            {{#each this.variables.batsmen as |batsman|}}
+            <tr style="height:40px;width:40px">
+                {{#if true}}
+                <td style="height:40px;width:90px">{{batsman}}</td>
+                {{else}}
+                <td style="color: red;">{{batsman}}</td>
+                {{/if}}
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    <div style="width: 250px;">
+        <table class="runsTable2" border="1" style="border-spacing: 2.5px;border-radius:5px;">
+            <tr>
+                <th>Score</th>
+            </tr>
+            {{#each this.variables.runsTaken as |runs|}}
+            <tr style="height:40px;width:40px">
+                {{#if true}}
+                <td style="height:40px;width:40px">{{runs}}</td>
+                {{else}}
+                <td style="color: red;">{{runs}}</td>
+                {{/if}}
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+</div>

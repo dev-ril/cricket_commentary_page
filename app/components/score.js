@@ -14,7 +14,7 @@ export default class ScoreComponent extends Component {
   @tracked total = 0;
   @tracked extras = 0;
   @tracked extrasRuns = 0;
-
+  runsneeded = this.variables.runsNeeded;
 
   swap() //for swapping batsmen while over change (or) during odd runs
   {
@@ -51,6 +51,14 @@ export default class ScoreComponent extends Component {
     {
       this.variables.tob = 'n';
       this.variables.score += 1;
+      if((this.variables.runsNeeded-1)>0)
+          {
+            this.variables.runsNeeded -= 1;
+          }
+          else
+          {
+            this.variables.runsNeeded =0;
+          }
       this.total += 1;
       this.extras += 1;
     }
@@ -59,6 +67,14 @@ export default class ScoreComponent extends Component {
     {
       this.variables.tob = 'w';
       this.variables.score += 1;
+      if((this.variables.runsNeeded-1)>0)
+          {
+            this.variables.runsNeeded -= 1;
+          }
+          else
+          {
+            this.variables.runsNeeded =0;
+          }
       this.total += 1;
       this.extras += 1;
     }
@@ -91,7 +107,7 @@ export default class ScoreComponent extends Component {
 
 
     //Checking whether required runs reached
-    else if (this.variables.score >= this.variables.runsNeeded) {
+    else if (this.variables.score >= this.runsneeded) {
       if (this.count == 0) {
         this.count++;
         this.variables.overlist.pushObject(this.oc);
@@ -114,7 +130,7 @@ export default class ScoreComponent extends Component {
         this.variables.balls++;     //Incrementing the no. of balls
       }
       if (this.variables.tob == 'n' || this.variables.tob == 'w') {
-        this.extrasRuns = value;    //Incrementing the no. of balls
+        this.extrasRuns += value;    //Incrementing the no. of balls
       }
       if (this.variables.balls > 6)   //For changing to next over if no. of balls is 6
       {
@@ -131,7 +147,7 @@ export default class ScoreComponent extends Component {
         this.extrasRuns = 0;
         this.overChange();
       }
-      //Score calculation
+      //Score calculation 
       else {
         this.variables.b[this.m] = value;
         this.m++;
@@ -140,6 +156,7 @@ export default class ScoreComponent extends Component {
         }
         if (value == 'out') {
           this.variables.outList.pushObject(this.variables.currentBatsman1);
+          this.variables.batsmanList.removeObject(this.variables.currentBatsman1);
           this.variables.i += 1;
           if (this.variables.batsmen[this.variables.i] == this.variables.currentBatsman1 || this.variables.batsmen[this.variables.i] == this.variables.currentBatsman2) {
             this.variables.i += 1;
@@ -156,6 +173,14 @@ export default class ScoreComponent extends Component {
 
         else {
           this.total += value;  //for displaying over total
+          if((this.variables.runsNeeded-value)>0)
+          {
+            this.variables.runsNeeded -= value;
+          }
+          else
+          {
+            this.variables.runsNeeded =0;
+          }
           if (this.variables.tob == 'c') {
             this.variables.over = this.variables.forOver[(this.variables.balls) - 1] + this.variables.currentBall;//for mentioning over
           }
@@ -194,9 +219,10 @@ export default class ScoreComponent extends Component {
       {
         if (this.variables.batsmen[this.variables.h] == this.variables.currentBatsman1) {
           this.variables.runsTaken[this.variables.h] = this.variables.runsBatsman1;
+          this.variables.batsmanList.insertAt(this.variables.h,this.variables.currentBatsman1);
         }
       }
-
+      this.variables.batsmanList.removeObject(value);
       this.variables.currentBatsman1 = value; //changing the selected batsman
 
       for (this.variables.h = 0; this.variables.h < 11; this.variables.h++) {
@@ -217,8 +243,10 @@ export default class ScoreComponent extends Component {
       for (this.variables.h = 0; this.variables.h < 11; this.variables.h++) {
         if (this.variables.batsmen[this.variables.h] == this.variables.currentBatsman2) {
           this.variables.runsTaken[this.variables.h] = this.variables.runsBatsman2;
+          this.variables.batsmanList.insertAt(this.variables.h,this.variables.currentBatsman2);
         }
       }
+      this.variables.batsmanList.removeObject(value);
       this.variables.currentBatsman2 = value;
       for (this.variables.h = 0; this.variables.h < 11; this.variables.h++) {
         if (this.variables.batsmen[this.variables.h] == this.variables.currentBatsman2) {

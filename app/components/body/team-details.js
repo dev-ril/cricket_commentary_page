@@ -9,12 +9,14 @@ export default class BodyTeamDetailsComponent extends Component {
     showBody() {
         if(!this.variables.isExpanded){
             this.variables.isExpanded = true;
-            this.variables.button1 = "End Game"
+            // this.variables.button1 = "End Game"
         }
-        else{
-            this.variables.isExpanded = false;
-            this.variables.button1 = "Start Game"
-        }
+        // else{
+        //     this.variables.isExpanded = false;
+        //     this.variables.button1 = "Start Game"
+        // }
+        this.variables.batsmanList.removeObject(this.variables.currentBatsman1);
+        this.variables.batsmanList.removeObject(this.variables.currentBatsman2);
     }
 }
  

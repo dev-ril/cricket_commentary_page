@@ -45,6 +45,7 @@ body {
   justify-content: space-between; 
 }
 
+
 a {
   color: #016aba;
   text-decoration: none;
@@ -160,3 +161,17 @@ p {
     border-radius:10px;
     /* background-color: #303F9F; */
   }
+
+  .runsTable1{
+    height: 200px;
+    width: 150px;
+    text-align: center;
+    border-radius: 0px;
+    border-spacing: 30px;
+}
+.runsTable2{
+  height: 100px;
+  width: 150px;
+  text-align: center;
+  border-radius: 0px;
+}
