@@ -17,6 +17,7 @@ export default class BodyTeamDetailsComponent extends Component {
         // }
         this.variables.batsmanList.removeObject(this.variables.currentBatsman1);
         this.variables.batsmanList.removeObject(this.variables.currentBatsman2);
+        this.variables.balls = 0;
     }
 }
  

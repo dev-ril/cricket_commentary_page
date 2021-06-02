@@ -175,3 +175,159 @@ p {
   text-align: center;
   border-radius: 0px;
 }
+  
+  .message{
+    padding: 5px;
+    color: white;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+  }
+    
+  .confirmButton{
+     position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 50%;
+  height: 36px;
+  margin-top: -45px;
+  margin-left: -25%;
+  outline: 0;
+  border: 0;
+  background: #04B486;
+  color: white;
+} 
+.confirmButton:hover{
+  transition: 0.3s;
+  cursor: pointer;
+  background: lighten(#04B486, 5%);  
+}
+
+     
+.rab{
+  width: 200px;
+  height: 30px;
+  outline: 0;
+  border: 0;
+  color: white;
+  background: darken(#04B486, 5%);
+}
+      
+@keyframes fadeOut{
+	from{
+  	opacity: 1;
+  } 
+  to{
+    opacity: 0;
+  }
+}
+    
+@keyframes fadeIn{
+	from{
+  	opacity: 0;
+  } 
+  to{
+    opacity: 1;
+  }
+}
+
+.customAlert1{
+
+  position: fixed;
+  max-width: 25%;
+  min-width: 150px !important;
+  min-height: 20%;
+  height: 100px;
+  left: 50%;
+  top: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-left: -49.5%;
+  margin-top: -25.0%;
+  
+  
+  @media all and (max-width: 1300px){
+    .message{
+      font-size: 14px !important;
+    }
+    input[type='button']{
+      height: 15% !important;
+    }
+  }
+}
+
+.customAlert2{
+
+  position: fixed;
+  max-width: 25%;
+  min-width: 150px !important;
+  min-height: 20%;
+  height: 100px;
+  left: 50%;
+  top: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-left: 43.2%;
+  margin-top: -25%;
+  
+  
+  @media all and (max-width: 1300px){
+    .message{
+      font-size: 14px !important;
+    }
+    input[type='button']{
+      height: 15% !important;
+    }
+  }
+}
+
+.customAlert3{
+
+  position: fixed;
+  max-width: 25%;
+  min-width: 150px !important;
+  min-height: 20%;
+  height: 100px;
+  left: 50%;
+  top: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-left: -49.5%;
+  margin-top: 18.7%;
+  
+  
+  
+  @media all and (max-width: 1300px){
+    .message{
+      font-size: 14px !important;
+    }
+    input[type='button']{
+      height: 15% !important;
+    }
+  }
+}
+
+.customAlert4{
+
+  position: fixed;
+  max-width: 25%;
+  min-width: 150px !important;
+  min-height: 20%;
+  height: 100px;
+  left: 50%;
+  top: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-left: 43.2%;
+  margin-top: 18.7%;
+  
+  
+  @media all and (max-width: 1300px){
+    .message{
+      font-size: 14px !important;
+    }
+    input[type='button']{
+      height: 15% !important;
+    }
+  }
+}

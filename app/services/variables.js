@@ -19,13 +19,17 @@ export default class VariablesService extends Service {
 
     //iterator variables
     @tracked i = 0;
-    @tracked ii = 0;
     @tracked j = 1;
     @tracked k = 0;
     @tracked h = 0;
+    @tracked ccc = true;
 
     //variables for batsmen
     @tracked batsmen = ['Ruturaj Gaikwad', 'Faf du Plessis', 'Moeen Ali', 'Suresh Raina', 'Ambati Rayudu', 'Ravindra Jadeja', 'MS Dhoni', 'Sam Curran', 'Dwayne Bravo', 'Shardul Thakur', 'Deepak Chahar'];
+    @tracked batsMen = {
+        name:['Ruturaj Gaikwad', 'Faf du Plessis', 'Moeen Ali', 'Suresh Raina', 'Ambati Rayudu', 'Ravindra Jadeja', 'MS Dhoni', 'Sam Curran', 'Dwayne Bravo', 'Shardul Thakur', 'Deepak Chahar'],
+        status:[1,2,3,4,5,6,7,8,9,10,11],
+    };
     @tracked batsmanList = ['Ruturaj Gaikwad', 'Faf du Plessis', 'Moeen Ali', 'Suresh Raina', 'Ambati Rayudu', 'Ravindra Jadeja', 'MS Dhoni', 'Sam Curran', 'Dwayne Bravo', 'Shardul Thakur', 'Deepak Chahar'];
     @tracked runsTaken = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     @tracked outList = [];
@@ -68,8 +72,11 @@ export default class VariablesService extends Service {
     @tracked bestBowler;
     @tracked bestPlayer;
 
-    @tracked forColour = true;
+    @tracked isBoundary;
     @tracked isEnded = false;
+    @tracked alertStatus = true;
+    
+
 
 
 }

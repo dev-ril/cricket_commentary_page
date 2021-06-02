@@ -6,15 +6,83 @@
             <tr>
                 <th>Batsman Name</th>
             </tr>
-            {{#each this.variables.batsmen as |batsman|}}
             <tr style="height:40px;width:40px">
-                {{#if this.checkOut}}
-                <td style="height:40px;width:90px">{{batsman}}</td>
-                {{else}}
-                <td style="color: red;">{{batsman}}</td>
+                {{#if this.variables.batsMen.status.[0]}}
+                <td style="height:40px;width:90px">{{this.variables.batsMen.name.[0]}}</td>
+                 {{else}}
+                <td style="height:40px;width:90px;color:red">{{this.variables.batsMen.name.[0]}}</td>
                 {{/if}}
             </tr>
-            {{/each}}
+            <tr style="height:40px;width:40px">
+                {{#if this.variables.batsMen.status.[1]}}
+                <td style="height:40px;width:90px">{{this.variables.batsMen.name.[1]}}</td>
+                {{else}}
+                <td style="height:40px;width:90px;color:red">{{this.variables.batsMen.name.[1]}}</td>
+                {{/if}}
+            </tr>
+            <tr style="height:40px;width:40px">
+                {{#if this.variables.batsMen.status.[2]}}
+                <td style="height:40px;width:90px">{{this.variables.batsMen.name.[2]}}</td>
+                 {{else}}
+                <td style="height:40px;width:90px;color:red">{{this.variables.batsMen.name.[2]}}</td>
+                {{/if}}
+            </tr>
+            <tr style="height:40px;width:40px">
+                {{#if this.variables.batsMen.status.[3]}}
+                <td style="height:40px;width:90px">{{this.variables.batsMen.name.[3]}}</td>
+                 {{else}}
+                <td style="height:40px;width:90px;color:red">{{this.variables.batsMen.name.[3]}}</td>
+                {{/if}}
+            </tr>
+            <tr style="height:40px;width:40px">
+                {{#if this.variables.batsMen.status.[4]}}
+                <td style="height:40px;width:90px">{{this.variables.batsMen.name.[4]}}</td>
+                 {{else}}
+                <td style="height:40px;width:90px;color:red">{{this.variables.batsMen.name.[4]}}</td>
+                {{/if}}
+            </tr>
+            <tr style="height:40px;width:40px">
+                {{#if this.variables.batsMen.status.[5]}}
+                <td style="height:40px;width:90px">{{this.variables.batsMen.name.[5]}}</td>
+                 {{else}}
+                <td style="height:40px;width:90px;color:red">{{this.variables.batsMen.name.[5]}}</td>
+                {{/if}}
+            </tr>
+            <tr style="height:40px;width:40px">
+                {{#if this.variables.batsMen.status.[6]}}
+                <td style="height:40px;width:90px">{{this.variables.batsMen.name.[6]}}</td>
+                 {{else}}
+                <td style="height:40px;width:90px;color:red">{{this.variables.batsMen.name.[6]}}</td>
+                {{/if}}
+            </tr>
+            <tr style="height:40px;width:40px">
+                {{#if this.variables.batsMen.status.[7]}}
+                <td style="height:40px;width:90px">{{this.variables.batsMen.name.[7]}}</td>
+                 {{else}}
+                <td style="height:40px;width:90px;color:red">{{this.variables.batsMen.name.[7]}}</td>
+                {{/if}}
+            </tr>
+            <tr style="height:40px;width:40px">
+                {{#if this.variables.batsMen.status.[8]}}
+                <td style="height:40px;width:90px">{{this.variables.batsMen.name.[8]}}</td>
+                 {{else}}
+                <td style="height:40px;width:90px;color:red">{{this.variables.batsMen.name.[8]}}</td>
+                {{/if}}
+            </tr>
+            <tr style="height:40px;width:40px">
+                {{#if this.variables.batsMen.status.[9]}}
+                <td style="height:40px;width:90px">{{this.variables.batsMen.name.[9]}}</td>
+                 {{else}}
+                <td style="height:40px;width:90px;color:red">{{this.variables.batsMen.name.[9]}}</td>
+                {{/if}}
+            </tr>
+            <tr style="height:40px;width:40px">
+                {{#if this.variables.batsMen.status.[10]}}
+                <td style="height:40px;width:90px">{{this.variables.batsMen.name.[10]}}</td>
+                 {{else}}
+                <td style="height:40px;width:90px;color:red">{{this.variables.batsMen.name.[10]}}</td>
+                {{/if}}
+            </tr>
         </table>
     </div>
     <div style="width: 250px;">
@@ -24,7 +92,7 @@
             </tr>
             {{#each this.variables.runsTaken as |runs|}}
             <tr style="height:40px;width:40px">
-                {{#if this.variables.forColour}}
+                {{#if 1}}
                 <td style="height:40px;width:40px">{{runs}}</td>
                 {{else}}
                 <td style="color: red;">{{runs}}</td>

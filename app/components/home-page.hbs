@@ -1,4 +1,5 @@
 <div class="jumbo">
+
     <div>
         <p class="header">Cricket Commentary Page</p>
     </div>
@@ -12,10 +13,14 @@
                 <div>
                     {{body/batsman-details}}
                 </div>
-                 <div>
+                <div>
                     {{body/score-details}}
                 </div>
             </div>
         </tr>
     </table>
 </div>
+
+{{#if this.variables.isBoundary}}
+<Alert />
+{{/if}}
