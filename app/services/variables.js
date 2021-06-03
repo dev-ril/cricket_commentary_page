@@ -72,6 +72,8 @@ export default class VariablesService extends Service {
     @tracked bestBowler;
     @tracked bestPlayer;
 
+    @tracked isBoundary4;
+    @tracked isBoundary6;
     @tracked isBoundary;
     @tracked isEnded = false;
     @tracked alertStatus = true;

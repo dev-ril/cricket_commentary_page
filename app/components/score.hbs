@@ -51,7 +51,16 @@
 </table>
 <br><br>
 
+{{#if this.variables.isBoundary4}}
+<FourAlert />
+{{/if}}
+
+{{#if this.variables.isBoundary6}}
+<SixAlert />
+{{/if}}
+
 {{#if this.variables.isBoundary}}
 <Alert />
 {{/if}}
+
 

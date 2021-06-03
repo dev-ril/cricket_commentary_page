@@ -126,10 +126,12 @@ export default class ScoreComponent extends Component {
             this.variables.runsBatsman1 = this.variables.runsTaken[this.variables.i];
             this.variables.wicketsGone += 1;
             this.variables.wicketsBowler1 += 1;
+            this.variables.isBoundary = true;
           }
         }
 
         else {
+          this.variables.isBoundary = false;
           this.total += value;
           if ((this.variables.runsNeeded - value) > 0) {
             this.variables.runsNeeded -= value;
@@ -150,11 +152,18 @@ export default class ScoreComponent extends Component {
             this.swap();
           }
 
-          if (value == 4 || value == 6) {
-            this.variables.isBoundary = true;
+          if (value == 4) {
+            this.variables.isBoundary4 = true;
+            this.variables.isBoundary6= false;
+          }
+          else if(value == 6)
+          {
+            this.variables.isBoundary6= true;
+            this.variables.isBoundary4= false;
           }
           else{
-            this.variables.isBoundary = false;
+            this.variables.isBoundary4 = false;
+            this.variables.isBoundary6= false;
           }
         }
       }
