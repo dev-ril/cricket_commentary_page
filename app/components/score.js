@@ -85,22 +85,11 @@ export default class ScoreComponent extends Component {
         this.variables.balls++;
       }
       if (this.variables.balls <= 6) {
-        if (this.m == 0) {
-          this.variables.xx[0] = this.oc - 1;
-          this.variables.bb[0] = '-';
-          this.variables.bb[1] = '-';
-          this.variables.bb[2] = '-';
-          this.variables.bb[3] = '-';
-          this.variables.bb[4] = '-';
-          this.variables.bb[5] = '-';
-        }
 
-        this.variables.b[this.m] = value;
+        this.variables.b[(this.variables.balls) - 1] = value;
         this.variables.b = this.variables.b;
         this.m++;
-        if (this.m > 5) {
-          this.m = 0;
-        }
+
         if (value == 'out') {
           for (this.r = 0; this.r < 11; this.r++) {
             if (this.variables.batsMen.name[this.r] == this.variables.currentBatsman1) {
@@ -121,7 +110,7 @@ export default class ScoreComponent extends Component {
           }
 
           if (this.variables.tob == 'c') {
-            this.variables.over = this.variables.forOver[(this.variables.balls) - 1] + this.variables.currentBall;
+            this.variables.over = this.variables.forOver[(this.variables.balls) - 1];
             this.variables.currentBatsman1 = this.variables.batsmen[this.variables.i];
             this.variables.runsBatsman1 = this.variables.runsTaken[this.variables.i];
             this.variables.wicketsGone += 1;
@@ -140,7 +129,7 @@ export default class ScoreComponent extends Component {
             this.variables.runsNeeded = 0;
           }
           if (this.variables.tob == 'c') {
-            this.variables.over = this.variables.forOver[(this.variables.balls) - 1] + this.variables.currentBall;//for mentioning over
+            this.variables.over = this.variables.forOver[(this.variables.balls) - 1];//for mentioning over
           }
           this.variables.score += value;
           this.variables.runsBatsman1 += value; //for changing current batsman runs
@@ -154,38 +143,43 @@ export default class ScoreComponent extends Component {
 
           if (value == 4) {
             this.variables.isBoundary4 = true;
-            this.variables.isBoundary6= false;
+            this.variables.isBoundary6 = false;
           }
-          else if(value == 6)
-          {
-            this.variables.isBoundary6= true;
-            this.variables.isBoundary4= false;
-          }
-          else{
+          else if (value == 6) {
+            this.variables.isBoundary6 = true;
             this.variables.isBoundary4 = false;
-            this.variables.isBoundary6= false;
+          }
+          else {
+            this.variables.isBoundary4 = false;
+            this.variables.isBoundary6 = false;
+          }
+        }
+        if(this.variables.balls == 6)
+        {
+          this.swap();
+          this.variables.overlist[(this.oc) - 2] = 0;
+          this.variables.overlist.pushObject(this.oc);
+          this.oc++;
+          this.variables.t[0] = this.total;
+          this.variables.tt = this.variables.t;
+          this.total = 0;
+          this.overChange();
+          this.variables.bb[0] = this.variables.b[0];
+          this.variables.bb[1] = this.variables.b[1];
+          this.variables.bb[2] = this.variables.b[2];
+          this.variables.bb[3] = this.variables.b[3];
+          this.variables.bb[4] = this.variables.b[4];
+          this.variables.bb[5] = this.variables.b[5];
+          this.variables.bb = this.variables.b;
+          this.variables.b = ['-','-','-','-','-','-'];
+          this.m = 0;
+          for(this.variables.f=0;this.variables.f<6;this.variables.f++)
+          {
+            this.variables.forOver[this.variables.f] +=1;
           }
         }
       }
-      else {
-        this.swap();
-        this.variables.overlist[(this.oc) - 2] = 0;
-        this.variables.overlist.pushObject(this.oc);
-        this.oc++;
-        this.variables.currentBall++; //for mentioning over..
-        this.variables.t[0] = this.total;
-        this.variables.tt = this.variables.t;
-        this.total = 0;
-        this.overChange();
-        this.variables.bb[0] = this.variables.b[0];
-        this.variables.bb[1] = this.variables.b[1];
-        this.variables.bb[2] = this.variables.b[2];
-        this.variables.bb[3] = this.variables.b[3];
-        this.variables.bb[4] = this.variables.b[4];
-        this.variables.bb[5] = this.variables.b[5];
-        this.variables.bb = this.variables.b;
 
-      }
     }
   }
 

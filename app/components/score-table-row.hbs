@@ -1,7 +1,7 @@
 {{#each this.variables.overlist as |o|}}
 <tr>
   
-  {{#if o}}
+{{#if o}}
   <td>Over {{o}}</td>
   {{#each this.variables.b as |ball|}}
   <td>{{ball}}</td>
@@ -11,7 +11,7 @@
   <td>{{this.variables.finalTotal}}</td>
   {{/each}}
 
-  {{else}}
+{{else}}
   {{#each this.variables.xx as |xx|}}
       <td>Over {{xx}}</td>
   {{/each}}
@@ -24,7 +24,7 @@
   <td>{{total}}</td>
   {{/each}}
   
-  {{/if}}
+{{/if}}
 </tr>
 
 

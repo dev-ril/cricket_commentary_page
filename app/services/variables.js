@@ -49,7 +49,6 @@ export default class VariablesService extends Service {
     //variables for overs
     @tracked over = 0;
     @tracked forOver = [0.1, 0.2, 0.3, 0.4, 0.5, 1];
-    @tracked currentBall = 0;
 
     //for mentioning type of ball
     @tracked tob = 'c';
@@ -63,7 +62,7 @@ export default class VariablesService extends Service {
     bb = [];
     tt = [0];
     xx = [1];
-
+    f;
     @tracked e = [0];  
     @tracked extraRuns =[];
    
