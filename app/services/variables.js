@@ -1,6 +1,10 @@
 import Service from '@ember/service';
-import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
+import Ember from 'ember';
+import $ from 'jquery';
+import jQuery from 'jquery';
 
 export default class VariablesService extends Service {
 
@@ -9,13 +13,14 @@ export default class VariablesService extends Service {
     //variables for team-details
     @tracked button1 = "Start Game";
     battingTeam = "Chennai Super Kings";
-    @tracked runsNeeded = 100;
-    @tracked totalOvers = 10;
+    @tracked runsNeeded = 0;
+    @tracked totalOvers = 0;
 
     //variables for score-details
     @tracked balls = 0;
     @tracked score = 0;
     @tracked wicketsGone = 0;
+    @tracked winningTeam;
 
     //iterator variables
     @tracked i = 0;
@@ -39,7 +44,7 @@ export default class VariablesService extends Service {
     @tracked runsBatsman2 = this.runsTaken[this.j];
 
     //variables for bowlers
-    @tracked bowlers = ['Ravindra Jadeja', 'Sam Curran', 'Dwayne Bravo', ' Shardul Thakur', ' Deepak Chahar'];
+    @tracked bowlers = ['Jasprit Bumrah', 'Rahul Chahar', 'Piyush Chawla', ' Trent Boult', ' Hardik Pandya'];
     @tracked runsGiven = [0, 0, 0, 0, 0];
     @tracked wicketsTaken = [0, 0, 0, 0, 0];
     @tracked currentBowler = this.bowlers[this.k];
@@ -76,8 +81,25 @@ export default class VariablesService extends Service {
     @tracked isBoundary;
     @tracked isEnded = false;
     @tracked alertStatus = true;
+
+    @tracked create = false;
+    @tracked shistory = false;
+    @tracked showhistory = false;
+    @tracked matchstatus = false;
+    @tracked uname;
+
+
+    @tracked runsScored= [4,5,6];
+    @tracked wickets = [1,2,3];
+    @tracked winningTeam = [a,b,c];
+    @tracked newData = [];
     
+    @tracked pageNumber = 1;    
+    @tracked pageSize = 5;
+    @tracked pages = [];
+    @tracked noOfRecords = [5,10,20,30];
 
-
+    @tracked noOfPages = [];
+    @tracked totalCount = 0;
 
 }

@@ -2,11 +2,15 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
+import Ember from 'ember';
+import $ from 'jquery';
+import jQuery from 'jquery';
+
 
 
 export default class ScoreComponent extends Component {
-  @service variables;
 
+  @service variables;
   temp;
   @tracked count = 0;
   @tracked m = 0;
@@ -17,6 +21,8 @@ export default class ScoreComponent extends Component {
   @tracked extrasRuns = 0;
   overno = this.variables.overlist[0];
   runsneeded = this.variables.runsNeeded;
+  ftarget = this.variables.runsNeeded;
+  fover = this.variables.totalOvers;
 
   swap() //for swapping batsmen while over change (or) during odd runs
   {
@@ -31,6 +37,7 @@ export default class ScoreComponent extends Component {
     this.temp = this.variables.i;
     this.variables.i = this.variables.j;
     this.variables.j = this.temp;
+
   }
 
   overChange() {
@@ -50,29 +57,68 @@ export default class ScoreComponent extends Component {
 
   }
 
-
   @action
   runs(value) {
 
-    //Checking whether overs are completed
-    if (this.variables.over == this.variables.totalOvers || this.variables.wicketsGone > 9) {
-
-      this.variables.finalTotal = this.total;
-      this.variables.isEnded = true;
-      alert("game lost!!");
-      this.ManOftheMatch2();
-      this.variables.bestPlayer = this.variables.bestBowler;
-    }
-
-
     //Checking whether required runs reached
-    else if (this.variables.score >= this.runsneeded) {
+    if (this.variables.score >= this.runsneeded) {
 
       this.variables.finalTotal = this.total;
+      this.variables.winningTeam = 'Team 1';
+      let historydata = {
+        uname :   this.variables.uname,
+        fscore : parseInt(this.variables.score),
+        fwicket : parseInt(this.variables.wicketsGone),
+        fteam : "Team 1",
+        ftarget: parseInt(this.ftarget),
+        fover: parseInt(this.fover)
+      };
+      console.log(historydata);
       this.variables.isEnded = true;
-      alert("game won!!");
+      alert("CSK won the match!!");
+
+      $.ajax({
+        url: 'http://localhost:8080/FirstServlet/historyservlet',
+        type: 'POST',
+        data: historydata,
+        success: (data) => {
+          console.log("success" + JSON.stringify(data));
+        }
+      });
       this.ManOftheMatch1();
       this.variables.bestPlayer = this.variables.bestBatsman;
+      this.variables.matchstatus = false;
+      this.variables.matchstatus = this.variables.matchstatus;
+    }
+    //Checking whether overs are completed
+    else if (this.variables.over == this.variables.totalOvers || this.variables.wicketsGone > 9) {
+
+      this.variables.finalTotal = this.total;
+      this.variables.winningTeam = 'Team 2';
+      let historydata = {
+        uname : this.variables.uname,
+        fscore : parseInt(this.variables.score),
+        fwicket : parseInt(this.variables.wicketsGone),
+        fteam : "Team 2",
+        ftarget: parseInt(this.ftarget),
+        fover: parseInt(this.fover)
+      };
+      console.log(historydata);
+      this.variables.isEnded = true;
+      alert("CSK lost the match!!");
+      $.ajax({
+        url: 'http://localhost:8080/FirstServlet/historyservlet',
+        type: 'POST',
+        data: historydata,
+        success: (data) => {
+          console.log("success" + JSON.stringify(data));
+        }
+      });
+   
+      this.ManOftheMatch2();
+      this.variables.bestPlayer = this.variables.bestBowler;
+      this.variables.matchstatus = false;
+      this.variables.matchstatus = this.variables.matchstatus;
     }
 
 
@@ -154,11 +200,12 @@ export default class ScoreComponent extends Component {
             this.variables.isBoundary6 = false;
           }
         }
-        if(this.variables.balls == 6)
-        {
+        if (this.variables.balls == 6 && this.oc <= this.variables.totalOvers) {
           this.swap();
           this.variables.overlist[(this.oc) - 2] = 0;
           this.variables.overlist.pushObject(this.oc);
+          this.variables.xx[0] = (this.oc) - 1;
+
           this.oc++;
           this.variables.t[0] = this.total;
           this.variables.tt = this.variables.t;
@@ -171,16 +218,20 @@ export default class ScoreComponent extends Component {
           this.variables.bb[4] = this.variables.b[4];
           this.variables.bb[5] = this.variables.b[5];
           this.variables.bb = this.variables.b;
-          this.variables.b = ['-','-','-','-','-','-'];
+          this.variables.b = ['-', '-', '-', '-', '-', '-'];
           this.m = 0;
-          for(this.variables.f=0;this.variables.f<6;this.variables.f++)
-          {
-            this.variables.forOver[this.variables.f] +=1;
+          for (this.variables.f = 0; this.variables.f < 6; this.variables.f++) {
+            this.variables.forOver[this.variables.f] += 1;
           }
+          console.log(this.variables.xx);
         }
       }
-
     }
+
+    let customdata = {
+      score: parseInt(this.variables.score),
+      over: parseFloat(this.variables.over),
+    };
   }
 
 
